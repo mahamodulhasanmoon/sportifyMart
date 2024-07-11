@@ -44,7 +44,7 @@ const MobileNav = () => {
           isOpen
             ? " translate-x-0 opacity-100"
             : " translate-x-[400px] opacity-0"
-        } transition-all duration-300 flex items-center gap-8 font-[500] text-textColor flex-col fixed top-0 right-0 h-screen overflow-y-scroll w-[70%] bg-[#ffff] z-50`}
+        } transition-all duration-300 flex items-center gap-8 font-[500] text-textColor flex-col fixed top-0 right-0 h-screen overflow-y-scroll w-[70%] bg-[#ffff]`}
       >
         <div className="flex items-end justify-end p-6 w-full">
           <RxCross1

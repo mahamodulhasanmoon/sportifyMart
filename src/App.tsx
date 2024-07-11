@@ -1,17 +1,11 @@
-import Footer from "./components/shared/Footer"
-import MobileNav from "./components/shared/MobileNav"
-import Navbar from "./components/shared/Navbar"
-import HeroSection from "./components/ui/HeroSection"
+import { RouterProvider } from "react-router-dom"
+import { routes } from "./routes"
 
 function App() {
 
   return (
     <div className="bg-backgroundColor">
- <Navbar/>
- <MobileNav/>
- <HeroSection/>
- <div className="min-h-screen flex items-center justify-center"> hello</div>
- <Footer/>
+      <RouterProvider router={routes}/>
     </div>
   )
 }

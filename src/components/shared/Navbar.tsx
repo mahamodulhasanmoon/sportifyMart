@@ -3,6 +3,7 @@ import  { useEffect, useState } from "react";
 // react icons
 import { IoIosArrowDown } from "react-icons/io";
 import Logo from "../ui/Logo";
+import { ActionButton } from "../ui/Button";
 
 const Navbar = () => {
   const [scrolling, setScrolling] = useState(false);
@@ -27,7 +28,7 @@ const Navbar = () => {
     <nav
       className={`${
         scrolling && "backdrop-blur-lg shadow-md "
-      } sticky top-0  left-0 w-full max-w-[1600px] bg-primaryColor mx-auto px-6 py-4 items-center justify-between gap-5 z-50 hidden md:flex`}
+      } sticky top-0  left-0 w-full max-w-[1600px] bg-primaryColor mx-auto px-6 py-4 items-center justify-between gap-5 z-50 hidden md:flex `}
     >
       {/* <img src="/logo.png" alt="logo" className="w-[130px]" /> */}
       <Logo/>
@@ -47,7 +48,7 @@ const Navbar = () => {
             Articles
             <IoIosArrowDown className=" group-hover:rotate-[180deg] transition-all duration-300" />
           </a>
-          <div className="flex flex-col gap-5 w-[250px] shadow-drop p-6 translate-y-[100px] opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 absolute top-[25px] left-0 bg-[#e75656]">
+          <div className="flex flex-col gap-5 w-[250px] shadow-drop p-6 translate-y-[100px] opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 absolute top-[25px] left-0 bg-white border border-black">
             <p className="hover:text-brandColor hover:tracking-wider transition-all duration-300 cursor-pointer">
               Web Development
             </p>
@@ -66,9 +67,7 @@ const Navbar = () => {
           <a href="#Support">Support</a>
         </li>
 
-        <button className="py-2 px-6 bg-green-700 rounded-md text-[#fff]">
-          Sign Up
-        </button>
+     <ActionButton>Shop Now</ActionButton>
       </ul>
     </nav>
   );
