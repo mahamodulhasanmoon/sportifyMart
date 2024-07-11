@@ -3,7 +3,7 @@ const ProductCard = ({ product }:any) => {
   const { name, category, stock, brand, rating, description, price, image } = product;
 
   return (
-    <div className="bg-white p-4 rounded-lg shadow-md">
+    <div className="bg-white  rounded-lg   shadow-drop p-2">
       <img src={image} alt={name} className="rounded-lg mb-4" />
       <h3 className="text-xl font-semibold text-primaryColor">{name}</h3>
       <p className="text-textColor-paragraph mb-2">{category}</p>

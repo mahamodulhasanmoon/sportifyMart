@@ -1,4 +1,5 @@
 import ProductCard from "../cards/ProductCard";
+import Heading from "./Heading";
 
 const FeaturedSection = () => {
   // Sample data (replace with actual fetched data)
@@ -36,12 +37,27 @@ const FeaturedSection = () => {
       price: 19.99,
       image: 'https://dummyimage.com/400x250/ccc/000.jpg&text=Swimming+Goggles',
     },
+    {
+      id: 4,
+      name: 'Swimming Goggles',
+      category: 'Swimming',
+      stock: 20,
+      brand: 'Speedo',
+      rating: 4.2,
+      description: 'Anti-fog swimming goggles with UV protection.',
+      price: 19.99,
+      image: 'https://dummyimage.com/400x250/ccc/000.jpg&text=Swimming+Goggles',
+    },
   ];
 
   return (
-    <section className="my-8">
-      <h2 className="text-3xl font-semibold mb-4">Featured Products</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <section className="my-20 mx-auto container">
+      <Heading
+      title="Feature Products"
+      subtitle="Discover our latest and most popular products."
+   
+      />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {latestProducts.map(product => (
           <ProductCard key={product.id} product={product} />
         ))}
