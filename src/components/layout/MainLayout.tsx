@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import MobileNav from "../shared/MobileNav";
 import Navbar from "../shared/Navbar";
 import Footer from "../shared/Footer";
+import Breadcrumb from "../ui/BreadCumb";
 
 export default function MainLayout() {
   return (
@@ -9,6 +10,7 @@ export default function MainLayout() {
     <Navbar/>
     <MobileNav/>
     <main className="min-h-screen">
+        <Breadcrumb/>
 
     <Outlet/>
 

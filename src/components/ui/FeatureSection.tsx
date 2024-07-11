@@ -1,4 +1,5 @@
 import ProductCard from "../cards/ProductCard";
+import Button from "./Button";
 import Heading from "./Heading";
 
 const FeaturedSection = () => {
@@ -61,6 +62,9 @@ const FeaturedSection = () => {
         {latestProducts.map(product => (
           <ProductCard key={product.id} product={product} />
         ))}
+      </div>
+      <div className="shwbtn text-center mt-20">
+        <Button>{`View All >>`} </Button>
       </div>
     </section>
   );
