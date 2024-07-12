@@ -36,7 +36,7 @@ const Breadcrumb = () => {
                 <span>/ {name}</span>
               ) : (
                 <Link to={routeTo} className="text-primaryColor hover:text-secondaryColor">
-                  {name}
+                  /{name} 
                 </Link>
               )}
             </li>
