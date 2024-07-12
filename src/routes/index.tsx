@@ -7,6 +7,10 @@ import Contact from "../components/ui/Contact";
 import AboutPage from "../pages/AboutPage";
 import ProductsPage from "../pages/ProductsPage";
 import ProductDetails from "../pages/ProductDetails";
+import Cart from "../pages/Cart";
+import Checkout from "../pages/Checkout";
+import Dashboard from "../pages/dashboard/Dashboard";
+import NotFound from "../components/shared/NotFound";
 
 export const routes : any = createBrowserRouter([{
     path: "/",
@@ -31,7 +35,24 @@ export const routes : any = createBrowserRouter([{
      {
       path:'/products/:id',
       element:<ProductDetails/>
-     }
+     },
+     {
+      path:'/cart',
+      element:<Cart/>
+     },
+     {
+      path:'/checkout',
+      element:<Checkout/>
+     },
+     {
+      path:'/dashboard',
+      element:<Dashboard/>
+     },
+ 
     ]
   },
+  {
+    path:'*',
+    element:<NotFound/>
+   }
 ]) 

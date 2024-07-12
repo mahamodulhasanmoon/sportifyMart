@@ -32,7 +32,7 @@ const Navbar = () => {
     >
       {/* <img src="/logo.png" alt="logo" className="w-[130px]" /> */}
       <Logo/>
-      <ul className="flex items-center gap-12 font-[500] text-textColor z-50">
+      <ul className="flex items-center gap-12 font-[500] text-white z-50">
         {
           navItems.map(({label,path},i)=>(
             <li key={i}>
@@ -42,7 +42,7 @@ const Navbar = () => {
         }
       
 
-     <ActionButton>Shop Now</ActionButton>
+     <Link to={'/dashboard'}><ActionButton>Dashboard</ActionButton></Link>
       </ul>
     </nav>
   );

@@ -1,5 +1,5 @@
+import { AllProduct } from "../components/products/AllProduct";
 import SearchAndFilter from "../components/products/SearchAndFilter";
-import FeaturedSection from "../components/ui/FeatureSection";
 import Heading from "../components/ui/Heading";
 
 export default function ProductsPage() {
@@ -10,7 +10,7 @@ export default function ProductsPage() {
         subtitle="Discover our latest and most popular products."
         />
         <SearchAndFilter/>
-        <FeaturedSection/>
+       <AllProduct/>
 
     </div>
   )
