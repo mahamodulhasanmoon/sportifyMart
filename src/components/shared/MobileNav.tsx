@@ -4,6 +4,7 @@ import  { useEffect, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { RiMenu3Line } from "react-icons/ri";
 import { RxCross1 } from "react-icons/rx";
+import Logo from "../ui/Logo";
 
 const MobileNav = () => {
   const [scrolling, setScrolling] = useState(false);
@@ -32,7 +33,7 @@ const MobileNav = () => {
           scrolling && "backdrop-blur-lg shadow-md"
         } sticky top-0 left-0 w-full max-w-[1600px] mx-auto px-6 py-4 flex items-center justify-between gap-5 z-50 md:hidden`}
       >
-        <img src="/logo.png" alt="logo" className="w-[110px]" />
+       <Logo/>
 
         <RiMenu3Line
           className="text-[1.5rem] text-textColor"

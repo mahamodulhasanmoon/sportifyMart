@@ -5,8 +5,8 @@ const Heading = ({ title, subtitle }:{
   
 }) => {
   return (
-    <div className="text-center my-10">
-      <h1 className="text-4xl font-bold text-primaryColor mb-2">{title}</h1>
+    <div className="text-center my-10 max-w-[768px] mx-auto">
+      <h1 className="text-4xl font-bold text-primaryColor mb-5">{title}</h1>
       <p className="text-lg text-textColor-paragraph">{subtitle}</p>
     </div>
   );

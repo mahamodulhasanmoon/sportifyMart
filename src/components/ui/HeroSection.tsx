@@ -30,7 +30,7 @@ const HeroSection = () => {
   return (
     <div className="relative h-screen">
       <div className="absolute inset-0 bg-black opacity-40"></div>
-      <div className="absolute inset-0 flex items-center justify-center">
+      <div className="  flex items-center justify-center">
         <Carousel
           autoPlay
           infiniteLoop

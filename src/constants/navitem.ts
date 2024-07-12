@@ -5,12 +5,16 @@ export const navItems = [
     },
 
     {
+        path:'/products',
+        label:'Shop'
+    },
+    {
         path:'/about',
-        label:'about'
+        label:'about Us'
     },
 
     {
-        path:'/about',
-        label:'contact'
+        path:'/contact',
+        label:'Contact Us'
     }
 ]
