@@ -23,7 +23,9 @@ export const {
     reducer:ProductReducer,
     actions:{
         addToCart,
-        removeFromCart
+        removeFromCart,
+        incrementQuantity,
+        decrementQuantity,
     }
 } = createSlice({
     initialState,
@@ -45,14 +47,18 @@ export const {
         removeFromCart: (state, action) => {
             state.cart = state.cart.filter(product => product._id!== action.payload)
         },
-        isLoading: (state, action) => {
-            state.isLoading = action.payload
-        },
-        setError: (state, action) => {
-            state.error = action.payload
-        },
-        setSuccess: (state, action) => {
-            state.success = action.payload
-        }
+        // handle Increment or Decrement using same function
+        incrementQuantity: (state, action: PayloadAction<string>) => {
+            const product = state.cart.find((item) => item._id === action.payload);
+            if (product) {
+              product.quantity += 1;
+            }
+          },
+          decrementQuantity: (state, action: PayloadAction<string>) => {
+            const product = state.cart.find((item) => item._id === action.payload);
+            if (product && product.quantity > 1) {
+              product.quantity -= 1;
+            }
+          },
     }
 })

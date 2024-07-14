@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link } from "react-router-dom";
 import { ICart } from "../../interfaces/Products.interface";
 import { useAppDispatch } from "../../redux/hook";
