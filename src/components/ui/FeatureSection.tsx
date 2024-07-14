@@ -10,9 +10,6 @@ const {data } = useGetProductsQuery({
   fields:'name,thumbnail,price,stock'
 })
 
-// fetch(`https://sportify-server.brainicsoft.xyz/api/v1/products`)
-// .then(res=>res.json())
-// .then(data => console.log(data))
 
   return (
     <section className="my-20 mx-auto container">

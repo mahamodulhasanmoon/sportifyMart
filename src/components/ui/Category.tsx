@@ -1,22 +1,11 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import Heading from './Heading';
+import { categories } from '../../constants/category';
 
 // Dummy data for categories (replace with actual data if available)
-const categories = [
-  { id: 1, name: 'Football', icon: '🏈' },
-  { id: 2, name: 'Basketball', icon: '🏀' },
-  { id: 3, name: 'Tennis', icon: '🎾' },
-  { id: 4, name: 'Swimming', icon: '🏊‍♂️' },
-  { id: 5, name: 'Running', icon: '🏃‍♂️' },
-  { id: 6, name: 'Golf', icon: '⛳️' },
-  { id: 7, name: 'Baseball', icon: '⚾️' },
-  { id: 8, name: 'Baseball', icon: '⚾️' },
-  { id: 9, name: 'Baseball', icon: '⚾️' },
-  // Add more categories as needed
-];
+
 
 const Category = () => {
   const itemsPerSlide = 6; // Number of items to display per slide
@@ -49,7 +38,7 @@ const Category = () => {
           <div key={slideIndex} className="grid grid-cols-6 gap-4">
             {categories.slice(slideIndex * itemsPerSlide, (slideIndex + 1) * itemsPerSlide).map((category) => (
               <div key={category.id} className="bg-white p-4 rounded-lg shadow-md text-center">
-                <Link to={`/products/${category.id}`}>
+                <Link to={`/products?category=${category.name}`}>
                   <div className="flex items-center justify-center mb-4">
                     <span className="text-3xl">{category.icon}</span>
                   </div>

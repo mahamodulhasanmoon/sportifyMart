@@ -6,9 +6,12 @@ import { ActionButton } from "../ui/Button";
 import { Link } from "react-router-dom";
 import { navItems } from "../../constants/navitem";
 import {  useAppSelector } from "../../redux/hook";
+import { useBeforeload } from "../useBeforeUnload";
 
 const Navbar = () => {
   const {cart} = useAppSelector(state => state.product)
+
+  useBeforeload()
 
   const [scrolling, setScrolling] = useState(false);
 

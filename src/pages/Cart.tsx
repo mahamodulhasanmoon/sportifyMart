@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import AddCart from "../components/cards/AddCart";
 import { useAppSelector } from "../redux/hook"
 
@@ -38,8 +39,11 @@ const vatAmount = totalPrice * 0.15;
         <li className="flex flex-wrap gap-4 text-base font-bold">Total <span className="ml-auto">${(totalPrice-discount + shippingCharge+vatAmount).toFixed(2)}</span></li>
       </ul>
       <div className="mt-8 space-y-2">
+        <Link to={'/checkout'}>
+        
         <button type="button" className="text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-blue-600 hover:bg-blue-700 text-white rounded-md">Checkout</button>
-        <button type="button" className="text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-transparent text-gray-800 border border-gray-300 rounded-md">Continue Shopping</button>
+        </Link>
+       <Link to='/products'> <button type="button"  className="text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-transparent text-gray-800 border border-gray-300 rounded-md">Continue Shopping</button></Link>
       </div>
     </div>
   </div>

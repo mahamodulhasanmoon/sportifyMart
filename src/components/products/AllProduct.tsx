@@ -1,10 +1,17 @@
+
+import { useLocation } from "react-router-dom";
 import { useGetProductsQuery } from "../../redux/Features/products/productApi";
 import ProductCard from "../cards/ProductCard";
 
 
 
-export const AllProduct = () => {
-  const {data} = useGetProductsQuery()
+export const AllProduct = ({categoryFilter,searchQuery}:any) => {
+  const queries = new URLSearchParams(useLocation().search)
+  console.log(queries.get('category'));
+  const {data} = useGetProductsQuery({
+    searchTerm:`${searchQuery}`,
+     fields:'name,thumbnail,price,stock'
+  })
 
   
 

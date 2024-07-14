@@ -8,12 +8,13 @@ export const {
   endpoints: ({ query }) => ({
     getProducts: query<ProductProps[], any>({
       query: (query) => {
-     
+     console.log(query);
         return {
           url: "products",
           params:{
             limit:query?.limit,
-            fields:query?.fields
+            fields:query?.fields,
+            searchTerm:query?.searchTerm
           }
         };
       },
