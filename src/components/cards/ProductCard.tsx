@@ -1,15 +1,12 @@
 import { Link } from "react-router-dom";
+import { ICart } from "../../interfaces/Products.interface";
+import { useAppDispatch } from "../../redux/hook";
+import { addToCart } from "../../redux/Features/products/productSlice.ts";
 
-interface ICart {
-    _id: string;
-    name: string;
-    price: number;
-    quantity: number;
-    thumbnail: string;
-}
+
 const ProductCard = ({ product }:any) => {
   const { name, _id, rating,  price, thumbnail,stock } = product;
-
+  const dispatch = useAppDispatch()
   const cartData:ICart = {
     name,
     _id,
@@ -19,7 +16,7 @@ const ProductCard = ({ product }:any) => {
   }
 
   const handleCart = ()=>{
-console.log(cartData);
+dispatch(addToCart(cartData))
   }
 
   return (

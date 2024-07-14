@@ -12,3 +12,11 @@ export interface ProductProps {
     __v: number;
     _id: string;
   }
+
+ export  interface ICart {
+    _id: string;
+    name: string;
+    price: number;
+    quantity: number;
+    thumbnail: string;
+}

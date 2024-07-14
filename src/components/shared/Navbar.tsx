@@ -5,8 +5,11 @@ import Logo from "../ui/Logo";
 import { ActionButton } from "../ui/Button";
 import { Link } from "react-router-dom";
 import { navItems } from "../../constants/navitem";
+import {  useAppSelector } from "../../redux/hook";
 
 const Navbar = () => {
+  const {cart} = useAppSelector(state => state.product)
+
   const [scrolling, setScrolling] = useState(false);
 
   useEffect(() => {
@@ -43,7 +46,7 @@ const Navbar = () => {
         }
        <Link className="relative" to='/cart'>
       <BsCart2 size={30} color="white"/>
-      <span style={{lineHeight:'25px'}} className=" w-6 h-6  text-center line-clamp-1 inline-block rounded-full bg-accentColor text-black absolute top-[-14px] right-[-16px]">1</span>
+      <span style={{lineHeight:'25px'}} className=" w-6 h-6  text-center line-clamp-1 inline-block rounded-full bg-accentColor text-black absolute top-[-14px] right-[-16px]">{cart.length}</span>
        </Link>
 
      <Link to={'/dashboard'}><ActionButton>Dashboard</ActionButton></Link>
