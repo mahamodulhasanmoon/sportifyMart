@@ -1,16 +1,16 @@
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }:any) => {
-  const { name, id, rating,  price, image } = product;
+  const { name, _id, rating,  price, thumbnail } = product;
 
   return (
     <div className="flex flex-col justify-center items-start p-2 ">
     <div className="relative">
-      <Link to ={`/products/${id}`} >
-      <img className="hidden lg:block" src={image} alt="watch" />
+      <Link to ={`/products/${_id}`} >
+      <img className="hidden lg:block h-[300px]" src={thumbnail} alt="watch" />
       </Link>
-      <Link to ={`/products/${id}`} >
-      <img  className="lg:hidden" src={image} alt="watch" />
+      <Link to ={`/products/${_id}`} >
+      <img  className="lg:hidden h-[300px]" src={thumbnail} alt="watch" />
       </Link>
        
         

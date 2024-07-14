@@ -1,14 +1,37 @@
-import  { useState } from "react";
+import  { useEffect, useState } from "react";
 import  { ActionButton } from "../components/ui/Button";
+import { useGetProductByIdQuery } from "../redux/Features/products/productApi";
+import { useParams } from "react-router-dom";
+
+interface ImgProps{
+    index:number,
+    imgUrl:string | undefined
+}
+
 
 const ProductDetails = () => {
+    const {id} = useParams()
+    const {data} = useGetProductByIdQuery(id)
+    
+    const [img,setImg] = useState<ImgProps>({
+        index:0,
+        imgUrl:''
+    })
 
 
-    const [slide, setSlide] = useState(true);
-
-    const slideToggle = () => setSlide(!slide);
 
 
+console.log(data);
+useEffect(()=>{
+    setImg({
+        index:0,
+        imgUrl:data?.thumbnail 
+    })
+},[data])
+
+const handleChangeImage= (data:ImgProps)=>{
+    setImg(data)
+}
 
     return (
         <>
@@ -16,41 +39,23 @@ const ProductDetails = () => {
           
                     <div className=" flex justify-start w-full  item-start flex-col lg:flex-row   lg:space-x-8  bg-white">
                         <div className="w-full">
-                            <div className="relative">
-                                <div className="slider">
-                                    <div className="slide-ana flex flex-shrink-0">
-                                        <div className={"flex flex-shrink-0 transform  " + (slide ? "translate-x-0" : "-translate-x-full")}>
-                                            <img className=" lg:block hidden w-full h-full object-center object-cover" src="https://i.ibb.co/wBknrzK/pexels-monstera-6311641-1-2.png" alt="A girl posing front" />
-                                            <img className=" hidden md:block lg:hidden w-full h-full object-center object-cover" src="https://i.ibb.co/JqhZhhp/pexels-monstera-6311641-1-3.png" alt="A girl posing front" />
-                                            <img className=" block md:hidden w-full h-full object-center object-cover" src="https://i.ibb.co/FXb2RfJ/pexels-dominika-roseclay-5462562-1.png" alt="A girl posing front" />
-                                        </div>
-                                        <div className={"flex flex-shrink-0 transform " + (slide ? "translate-x-full" : "translate-x-0")}>
-                                            <img className=" lg:block hidden w-full h-full object-center object-cover" src="https://i.ibb.co/FwRy0WL/pexels-monstera-6311575-2-1.png" alt="A girl posing Back" />
-                                            <img className=" hidden md:block lg:hidden w-full h-full object-center object-cover" src="https://i.ibb.co/k0bJRQk/pexels-monstera-6311575-3-1.png" alt="A girl posing Back" />
-                                            <img className=" block md:hidden w-full h-full object-center object-cover" src="https://i.ibb.co/0f1gRTt/pexels-monstera-6311575-4.png" alt="A girl posing Back" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className=" transition duration-150 absolute bottom-0 w-full h-full flex justify-between items-center px-4">
-                                    <button onClick={slideToggle} aria-label="previous" className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 rounded-full flex justify-center items-center">
-                                        <svg className="" width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <circle cx="26" cy="26" r="26" fill="white" />
-                                            <path d="M28.4987 19.333L21.832 25.9997L28.4987 32.6663" stroke="#4B5563" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                        </svg>
-                                    </button>
-                                    <button onClick={slideToggle} aria-label="Next" className=" focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 rounded-full flex justify-center items-center">
-                                        <svg className="" width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <circle cx="26" cy="26" r="26" fill="white" />
-                                            <path d="M23.5013 19.333L30.168 25.9997L23.5013 32.6663" stroke="#4B5563" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
+                        <img className="   w-auto  max-h-[500px] object-center" src={img?.imgUrl} alt="A girl posing front" />
+                        <div className="flex items-center justify-start gap-6">
+                     
+                        {
+                            data?.imgUrls.map((url,i) => (
+                                <img onClick={()=>handleChangeImage({
+                                    index:i,
+                                     imgUrl:url
+                                })} key={url} className={ `w-auto  max-h-[100px] cursor-pointer border-2  ${i === img.index ? 'border-primaryColor':'border-accentColor'} object-center`} src={url} alt="A girl posing front" />
+                            ))
+                        }
+                        </div>
                         </div>
                         <div className="mt-6 md:mt-8 lg:mt-0 flex justify-start items-start w-full flex-col space-y-6">
-                            <h2 className=" lg:text-2xl text-xl lg:leading-6 leading-5 text-gray-800 font-semibold">Plain White Tshirt</h2>
+                            <h2 className=" lg:text-2xl text-xl lg:leading-6 leading-5 text-gray-800 font-semibold">{data?.name}</h2>
                             <div className=" flex justify-start items-center mt-4">
-                                <p className="font-normal text-lg leading-6 text-gray-600 mr-4">$190</p>
+                                <p className="font-normal text-lg leading-6 text-gray-600 mr-4">${data?.price}</p>
                                 <div className="cursor-pointer flex space-x-2 mr-3">
                                     <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <g>
@@ -119,13 +124,13 @@ const ProductDetails = () => {
                                         </defs>
                                     </svg>
                                 </div>
-                                <p className=" font-normal text-sm leading-3 hover:text-gray-700 duration-100 cursor-pointer text-gray-500 underline">18 reviews</p>
+                                <p className=" font-normal text-sm leading-3 hover:text-gray-700 duration-100 cursor-pointer text-gray-500 underline">{data?.rating} reviews</p>
                             </div>
 <div className="font-normal text-lg  hover:text-gray-700 duration-100 cursor-pointer text-gray-500">
-    <p className="mb-4"><b>Description</b>: Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, sunt porro? Nostrum fugit iusto corporis hic maiores possimus distinctio rerum? </p>
-    <p className="mb-4"><b>brand</b>: Brand </p>
-    <p className="mb-4"><b>stock </b>: stock  </p>
-    <p className="mb-4"><b>category</b>: stock  </p>
+    <p className="mb-4"><b>Description</b>: {data?.description} </p>
+    <p className="mb-4"><b>brand</b>: {data?.brand} </p>
+    <p className="mb-4"><b>stock </b>: {data?.stock}  </p>
+    <p className="mb-4"><b>category</b>: {data?.category}  </p>
 </div>
                        
 

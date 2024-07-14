@@ -1,55 +1,14 @@
+import { useGetProductsQuery } from "../../redux/Features/products/productApi";
 import ProductCard from "../cards/ProductCard";
 import Button from "./Button";
 import Heading from "./Heading";
 
 const FeaturedSection = () => {
-  // Sample data (replace with actual fetched data)
-  const latestProducts = [
-    {
-      id: 1,
-      name: 'Running Shoes',
-      category: 'Running',
-      stock: 15,
-      brand: 'Nike',
-      rating: 4.5,
-      description: 'High-performance running shoes for all types of runners.',
-      price: 129.99,
-      image: 'https://dummyimage.com/400x250/ccc/000.jpg&text=Running+Shoes',
-    },
-    {
-      id: 2,
-      name: 'Fitness Tracker',
-      category: 'Fitness',
-      stock: 10,
-      brand: 'Fitbit',
-      rating: 4.0,
-      description: 'Track your fitness activities with this advanced fitness tracker.',
-      price: 89.99,
-      image: 'https://dummyimage.com/400x250/ccc/000.jpg&text=Fitness+Tracker',
-    },
-    {
-      id: 3,
-      name: 'Swimming Goggles',
-      category: 'Swimming',
-      stock: 20,
-      brand: 'Speedo',
-      rating: 4.2,
-      description: 'Anti-fog swimming goggles with UV protection.',
-      price: 19.99,
-      image: 'https://dummyimage.com/400x250/ccc/000.jpg&text=Swimming+Goggles',
-    },
-    {
-      id: 4,
-      name: 'Swimming Goggles',
-      category: 'Swimming',
-      stock: 20,
-      brand: 'Speedo',
-      rating: 4.2,
-      description: 'Anti-fog swimming goggles with UV protection.',
-      price: 19.99,
-      image: 'https://dummyimage.com/400x250/ccc/000.jpg&text=Swimming+Goggles',
-    },
-  ];
+const {data } = useGetProductsQuery()
+
+// fetch(`https://sportify-server.brainicsoft.xyz/api/v1/products`)
+// .then(res=>res.json())
+// .then(data => console.log(data))
 
   return (
     <section className="my-20 mx-auto container">
@@ -59,7 +18,7 @@ const FeaturedSection = () => {
    
       />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {latestProducts.map(product => (
+        {(data as any)?.map((product:any) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
