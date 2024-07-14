@@ -1,10 +1,14 @@
+import { Link } from "react-router-dom";
 import { useGetProductsQuery } from "../../redux/Features/products/productApi";
 import ProductCard from "../cards/ProductCard";
 import Button from "./Button";
 import Heading from "./Heading";
 
 const FeaturedSection = () => {
-const {data } = useGetProductsQuery()
+const {data } = useGetProductsQuery({
+  limit:4,
+  fields:'name,thumbnail,price,stock'
+})
 
 // fetch(`https://sportify-server.brainicsoft.xyz/api/v1/products`)
 // .then(res=>res.json())
@@ -23,7 +27,7 @@ const {data } = useGetProductsQuery()
         ))}
       </div>
       <div className="shwbtn text-center mt-20">
-        <Button>{`View All >>`} </Button>
+      <Link to={'/products'}>  <Button>{`View All >>`} </Button></Link>
       </div>
     </section>
   );

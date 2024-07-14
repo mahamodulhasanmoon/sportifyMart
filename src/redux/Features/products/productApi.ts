@@ -6,10 +6,15 @@ export const {
   useGetProductByIdQuery,
  } = injectEndpoints({
   endpoints: ({ query }) => ({
-    getProducts: query<[], void>({
-      query: () => {
+    getProducts: query<ProductProps[], any>({
+      query: (query) => {
+     
         return {
           url: "products",
+          params:{
+            limit:query?.limit,
+            fields:query?.fields
+          }
         };
       },
       transformResponse: (response: any) => {

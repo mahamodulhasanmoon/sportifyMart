@@ -1,4 +1,5 @@
 import  { useEffect, useState } from "react";
+import { BsCart2 } from "react-icons/bs";
 
 import Logo from "../ui/Logo";
 import { ActionButton } from "../ui/Button";
@@ -40,7 +41,10 @@ const Navbar = () => {
           </li>
           ))
         }
-      
+       <Link className="relative" to='/cart'>
+      <BsCart2 size={30} color="white"/>
+      <span style={{lineHeight:'25px'}} className=" w-6 h-6  text-center line-clamp-1 inline-block rounded-full bg-accentColor text-black absolute top-[-14px] right-[-16px]">1</span>
+       </Link>
 
      <Link to={'/dashboard'}><ActionButton>Dashboard</ActionButton></Link>
       </ul>
