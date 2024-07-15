@@ -11,6 +11,7 @@ import Cart from "../pages/Cart";
 import Checkout from "../pages/Checkout";
 import Dashboard from "../pages/dashboard/Dashboard";
 import NotFound from "../components/shared/NotFound";
+import Admin from "../components/layout/Admin";
 
 export const routes : any = createBrowserRouter([{
     path: "/",
@@ -44,13 +45,20 @@ export const routes : any = createBrowserRouter([{
       path:'/checkout',
       element:<Checkout/>
      },
-     {
-      path:'/dashboard',
-      element:<Dashboard/>
-     },
+
  
     ]
   },
+  {
+    path:'/dashboard',
+    element:<Admin/>,
+    children:[
+      {
+        path:'',
+      element:<Dashboard/>
+    }
+    ]
+   },
   {
     path:'*',
     element:<NotFound/>
