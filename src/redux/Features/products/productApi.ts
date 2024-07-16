@@ -4,11 +4,11 @@ import { injectEndpoints } from "../../api/api";
 export const {
    useGetProductsQuery,
   useGetProductByIdQuery,
+  useAddNewProductMutation
  } = injectEndpoints({
-  endpoints: ({ query }) => ({
+  endpoints: ({ query,mutation }) => ({
     getProducts: query<ProductProps[], any>({
       query: (query) => {
-     console.log(query);
         return {
           url: "products",
           params:{
@@ -31,6 +31,13 @@ export const {
       }),
       transformResponse: (response: any) => response.data,
       transformErrorResponse: (response: any) => response.data,
+    }),
+    addNewProduct: mutation<object, any >({
+      query: (data) => ({
+        url: `products`,
+        method: "POST",
+        body: data,
+      }),
     }),
   }),
 });

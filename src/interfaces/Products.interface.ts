@@ -3,13 +3,12 @@ export interface ProductProps {
     category: string;
     description: string;
     id: string;
-    imgUrls: string[];
+    imgUrls?:any;
     name: string;
     price: number;
     rating: number;
     stock: number;
-    thumbnail: string;
-    __v: number;
+    thumbnail?: string;
     _id: string;
   }
 
