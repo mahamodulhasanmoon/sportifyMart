@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ProductProps } from "../../../interfaces/Products.interface";
 import { injectEndpoints } from "../../api/api";
 
@@ -51,6 +52,7 @@ export const {
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ['Product'],
     }),
   }),
 });

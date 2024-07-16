@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { ProductProps } from '../../interfaces/Products.interface';
@@ -23,8 +24,8 @@ export default function ProductModal({ showModal, setShowModal, selectedProductD
   });
 
   
-  const [previewImages, setPreviewImages] = useState<string[]>([]);
-  const [thumbnailPreview, setThumbnailPreview] = useState('');
+  const [previewImages, setPreviewImages] = useState<string[]>(selectedProductData?.imgUrls);
+  const [thumbnailPreview, setThumbnailPreview] = useState(selectedProductData?.thumbnail);
 
   const onSubmit = async ({thumbnail,imgUrls, ...rest}: Partial<ProductProps>) => {
     const formattedData:any = {
@@ -77,6 +78,9 @@ export default function ProductModal({ showModal, setShowModal, selectedProductD
     }
   };
 
+  useEffect(()=>{
+    setPreviewImages(selectedProductData?.imgUrls)
+  },[selectedProductData])
 
   useEffect(() => {
     selectedProductData && (
@@ -153,13 +157,13 @@ export default function ProductModal({ showModal, setShowModal, selectedProductD
                   <div className="mb-4">
                     <label htmlFor="thumbnail" className="block text-sm font-medium text-gray-700">Thumbnail</label>
                     <input type="file" id="thumbnail" {...register("thumbnail")} onChange={(e) => handleFileChange(e, true)} />
-                    {thumbnailPreview && <img src={thumbnailPreview} alt="Thumbnail Preview" className="mt-2 w-48" />}
+                    {thumbnailPreview ||  selectedProductData?.thumbnail && <img src={thumbnailPreview || selectedProductData?.thumbnail} alt="Thumbnail Preview" className="mt-2 w-48" />}
                   </div>
                   <div className="mb-4">
                     <label htmlFor="images" className="block text-sm font-medium text-gray-700">Images</label>
                     <input type="file" id="images" {...register("imgUrls")} multiple onChange={(e) => handleFileChange(e)} />
                     <div className='flex'>
-                      {previewImages.map((url, index) => (
+                      {previewImages?.map((url, index) => (
                         <img key={index} src={url} alt={`Preview ${index}`} className="mt-2 w-20" />
                       ))}
                     </div>
