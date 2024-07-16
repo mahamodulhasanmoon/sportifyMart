@@ -84,7 +84,7 @@ const Footer = () => {
 
       <div className="w-full h-[2px] bg-[#fff] my-6"></div>
       <p className="text-center w-full">
-        Copyright @ZenUI. All Rights Reserved.
+        Copyright @Mahamodul Hasan Moon. All Rights Reserved.
       </p>
     </footer>
   );

@@ -3,10 +3,11 @@ import { useForm } from 'react-hook-form';
 import { ProductProps } from '../../interfaces/Products.interface';
 import { categories } from '../../constants/category';
 import { useAddNewProductMutation } from '../../redux/Features/products/productApi';
+import { toast } from 'react-toastify';
 
 export default function ProductModal({ showModal, setShowModal, selectedProductData }: any) {
 
-  const [addProducts,{error,isSuccess}] = useAddNewProductMutation()
+  const [addProducts,{error:SubmitError,isLoading,isSuccess}] = useAddNewProductMutation()
   const { register, handleSubmit, setValue } = useForm({
     defaultValues: {
       name: selectedProductData?.name,
@@ -46,11 +47,14 @@ export default function ProductModal({ showModal, setShowModal, selectedProductD
 
 
     await addProducts(formData);
-    console.log(error,isSuccess);
-    // console.log(error,isSuccess);
-  
-    // Handle form submission logic here
-    // setShowModal(false);
+    if (isSuccess) {
+      toast.success('Product Added Successfully');
+      setShowModal(false);
+    } 
+    if(SubmitError){
+      toast.error((SubmitError as any)?.data?.message || 'Something Went Wrong')
+    }
+ 
   };
 
   const handleFileChange = (e: any, isThumbnail = false) => {
@@ -137,8 +141,7 @@ export default function ProductModal({ showModal, setShowModal, selectedProductD
                       <label htmlFor="category" className="block text-sm font-medium px-10 text-gray-700">Category</label>
                       <select id="category" {...register("category")} className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                         <option value="">Select a Category</option>
-                        {/* Dynamically add options based on categories available */}
-                        {/* Example static option */}
+                       
                         {
                           categories.map(category=>(
                             <option value={category.name}>{category.icon} {category.name}</option>
@@ -147,7 +150,6 @@ export default function ProductModal({ showModal, setShowModal, selectedProductD
                       </select>
                     </div>
                   </div>
-                  {/* Repeat similar input blocks for other fields */}
                   <div className="mb-4">
                     <label htmlFor="thumbnail" className="block text-sm font-medium text-gray-700">Thumbnail</label>
                     <input type="file" id="thumbnail" {...register("thumbnail")} onChange={(e) => handleFileChange(e, true)} />
@@ -162,9 +164,15 @@ export default function ProductModal({ showModal, setShowModal, selectedProductD
                       ))}
                     </div>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <button type="submit" className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
-                      Save Changes
+   
+               {
+                <p className='text-red-600 '>{(SubmitError as any)?.data.message &&  (SubmitError as any) ?  (SubmitError as any)?.data.message : ''}</p>
+               }
+                  <div className="flex items-center justify-between mt-6" >
+                    <button type="submit" className="inline-flex  justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                      {
+                        isLoading ? 'Updating...' : 'Save Changes'
+                      }
                     </button>
                     <button type="button" className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2  text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" onClick={() => setShowModal(false)}>
                       Cancel
