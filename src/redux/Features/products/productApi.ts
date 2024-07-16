@@ -4,7 +4,8 @@ import { injectEndpoints } from "../../api/api";
 export const {
    useGetProductsQuery,
   useGetProductByIdQuery,
-  useAddNewProductMutation
+  useAddNewProductMutation,
+  useDeleteProductByIdMutation
  } = injectEndpoints({
   endpoints: ({ query,mutation }) => ({
     getProducts: query<ProductProps[], any>({
@@ -28,6 +29,15 @@ export const {
     getProductById: query<ProductProps, any >({
       query: (id) => ({
         url: `products/${id}`,
+      
+      }),
+      transformResponse: (response: any) => response.data,
+      transformErrorResponse: (response: any) => response.data,
+    }),
+    deleteProductById: mutation<ProductProps, any >({
+      query: (id) => ({
+        url: `products/${id}`,
+        method: "delete",
       }),
       transformResponse: (response: any) => response.data,
       transformErrorResponse: (response: any) => response.data,

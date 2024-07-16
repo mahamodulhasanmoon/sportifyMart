@@ -1,12 +1,30 @@
 import { useState } from "react";
 import ProductModal from "../../../../components/modals/ProductModal";
-import { useGetProductsQuery } from "../../../../redux/Features/products/productApi";
+import { useDeleteProductByIdMutation, useGetProductsQuery } from "../../../../redux/Features/products/productApi";
 import { ProductProps } from "../../../../interfaces/Products.interface";
+import { toast } from "react-toastify";
 
 export default function ProductTable() {
+    const [deleteProduct,{isLoading,error,}] = useDeleteProductByIdMutation()
     const { data } = useGetProductsQuery(undefined)
     const [showModal, setShowModal] = useState(false);
     const [selectedProductData, setSelectedProductData] = useState<ProductProps | null>(null)
+
+    const handleDeleteProduct = async (id: string) => {
+        const confirmed = window.confirm("Are you sure you want to delete this product?");
+        if (confirmed) {
+          await  deleteProduct(id);
+          if(!isLoading && !error && data){
+            toast.success("Deleted Product Successfully")
+          }else{
+            toast.error("something went wrong")
+          }
+
+        } else {
+          toast.error("Product Deleted Cancelled");
+        }
+      };
+      
     return (
         <div className=" py-12">
             {/* Desktop Responsive Start */}
@@ -69,7 +87,7 @@ export default function ProductTable() {
                                                     } className="py-2 px-6 mx-3 bg--700 rounded-md bg-secondaryColor  hover:text-textColor-paragraph hover:bg-accentColor text-[#fff]">
                                                         Edit
                                                     </button>
-                                                    <button className="py-2 px-6 bg--700 rounded-md bg-red-500  hover:text-textColor-paragraph hover:bg-accentColor text-[#fff]">
+                                                    <button onClick={()=>handleDeleteProduct(_id)} className="py-2 px-6 bg--700 rounded-md bg-red-500  hover:text-textColor-paragraph hover:bg-accentColor text-[#fff]">
                                                         delete
                                                     </button>
                                                 </div>
