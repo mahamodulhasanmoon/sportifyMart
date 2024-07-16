@@ -3,12 +3,13 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { ProductProps } from '../../interfaces/Products.interface';
 import { categories } from '../../constants/category';
-import { useAddNewProductMutation } from '../../redux/Features/products/productApi';
+import { useAddNewProductMutation, useUpdateProductByIdMutation } from '../../redux/Features/products/productApi';
 import { toast } from 'react-toastify';
 
 export default function ProductModal({ showModal, setShowModal, selectedProductData }: any) {
 
   const [addProducts,{error:SubmitError,isLoading,isSuccess}] = useAddNewProductMutation()
+  const [updateProducts,{error,isLoading:updateLoading ,isSuccess:UisSuccess}] = useUpdateProductByIdMutation()
   const { register, handleSubmit, setValue } = useForm({
     defaultValues: {
       name: selectedProductData?.name,
@@ -37,15 +38,34 @@ export default function ProductModal({ showModal, setShowModal, selectedProductD
     const formData = new FormData();
 
     formData.append('data',JSON.stringify(formattedData));
-    if(thumbnail ) formData.append('thumbnail',thumbnail?.[0]);
+    if (thumbnail && thumbnail[0] instanceof File) {
+      console.log(thumbnail);
+      formData.append('thumbnail', thumbnail[0]);
+    }
 
-    if(imgUrls ) {
-      Array.from(imgUrls).forEach((file:any) => {
-        formData.append('imgUrls', file);
+    if (imgUrls && Array.isArray(imgUrls)) {
+      Array.from(imgUrls).forEach((file: any) => {
+        if (file instanceof File) {
+          formData.append('imgUrls', file);
+        }
       });
     }
 
+if(selectedProductData){
+  await updateProducts({
+    id: selectedProductData?._id,
+    formData,
+  }).unwrap();
 
+  if (UisSuccess && !updateLoading) {
+    toast.success('Product updated Successfully');
+    setShowModal(false);
+  } 
+  if(error && !updateLoading){
+    toast.error((error as any)?.data?.message || 'Something Went Wrong')
+  }
+  return
+}
 
     await addProducts(formData);
     if (isSuccess) {
@@ -172,10 +192,13 @@ export default function ProductModal({ showModal, setShowModal, selectedProductD
                {
                 <p className='text-red-600 '>{(SubmitError as any)?.data.message &&  (SubmitError as any) ?  (SubmitError as any)?.data.message : ''}</p>
                }
+               {
+                <p className='text-red-600 '>{(error as any)?.data.message &&  (error as any) ?  (error as any)?.data.message : ''}</p>
+               }
                   <div className="flex items-center justify-between mt-6" >
                     <button type="submit" className="inline-flex  justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
                       {
-                        isLoading ? 'Updating...' : 'Save Changes'
+                        (isLoading || updateLoading ) ? 'Updating...' : 'Save Changes'
                       }
                     </button>
                     <button type="button" className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2  text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" onClick={() => setShowModal(false)}>

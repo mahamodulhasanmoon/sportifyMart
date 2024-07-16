@@ -8,7 +8,7 @@ export interface ProductProps {
     price: number;
     rating: number;
     stock: number;
-    thumbnail?: string;
+    thumbnail?:  any |  File[]  ;
     _id: string;
   }
 
