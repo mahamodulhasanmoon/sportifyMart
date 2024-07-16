@@ -4,6 +4,7 @@ import { apiUrl } from "../../config/constant";
 // Define the base API
 const baseQuery = fetchBaseQuery({
   baseUrl: `${apiUrl}`,
+
   // credentials: "include" as const,
 })
 
@@ -21,6 +22,7 @@ export const {
 } = createApi({
   reducerPath: "baseApi",
   baseQuery: baseQueryWithRefreshToken,
+  tagTypes: ['Product', 'User'],
   endpoints: () => ({
 
   }),

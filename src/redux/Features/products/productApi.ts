@@ -19,6 +19,7 @@ export const {
           }
         };
       },
+      providesTags: ['Product'],
       transformResponse: (response: any) => {
         return response.data;
       },
@@ -39,8 +40,10 @@ export const {
         url: `products/${id}`,
         method: "delete",
       }),
+      invalidatesTags: ['Product'],
       transformResponse: (response: any) => response.data,
       transformErrorResponse: (response: any) => response.data,
+      
     }),
     addNewProduct: mutation<object, any >({
       query: (data) => ({
