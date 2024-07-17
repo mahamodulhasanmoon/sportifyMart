@@ -18,11 +18,13 @@ export const {
           fields:string,
           category?:string,
           searchTerm?:string,
+          sort?:string
         } = {
           limit:query?.limit,
           fields:query?.fields,
-          category:query?.category.trim(),
-          searchTerm:query?.searchTerm.trim(),
+          category:query?.category?.trim(),
+          searchTerm:query?.searchTerm?.trim(),
+          sort:query?.sort,
         }
         return {
           url: "products",

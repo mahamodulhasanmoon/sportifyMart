@@ -4,7 +4,7 @@ import Heading from "../components/ui/Heading";
 import useSearch from "../hooks/useSearch";
 
 export default function ProductsPage() {
-  const {categoryFilter,handleCategoryChange,handleSearchChange,searchQuery} = useSearch()
+  const {categoryFilter,handleCategoryChange,handleSearchChange,handleSortChange,searchQuery,sortQuery,handleReset} = useSearch()
 
  
   return (
@@ -17,11 +17,14 @@ export default function ProductsPage() {
         categoryFilter={categoryFilter}
         handleCategoryChange={handleCategoryChange}
         handleSearchChange={handleSearchChange}
+        handleSortChange={handleSortChange}
         searchQuery={searchQuery}
+        handleReset={handleReset}
         />
        <AllProduct
        searchQuery={searchQuery}
        categoryFilter={categoryFilter}
+       sortQuery={sortQuery}  
        />
 
     </div>
