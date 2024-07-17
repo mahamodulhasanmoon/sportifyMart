@@ -1,8 +1,11 @@
 import { useState } from "react";
 
 export default function useSearch() {
+  const params = new URLSearchParams(window.location.search);
+  const paramValue = params.get('category');
+
     const [searchQuery, setSearchQuery] = useState('');
-    const [categoryFilter, setCategoryFilter] = useState('');
+    const [categoryFilter, setCategoryFilter] = useState(paramValue);
   
     // Function to handle search input change
     const handleSearchChange = (event:any) => {

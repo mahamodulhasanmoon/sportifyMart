@@ -5,6 +5,7 @@ import useSearch from "../hooks/useSearch";
 
 export default function ProductsPage() {
   const {categoryFilter,handleCategoryChange,handleSearchChange,searchQuery} = useSearch()
+
  
   return (
     <div className="container mx-auto">

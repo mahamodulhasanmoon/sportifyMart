@@ -12,13 +12,21 @@ export const {
   endpoints: ({ query,mutation }) => ({
     getProducts: query<ProductProps[], any>({
       query: (query) => {
+
+        const queryParams:{
+          limit:number,
+          fields:string,
+          category?:string,
+          searchTerm?:string,
+        } = {
+          limit:query?.limit,
+          fields:query?.fields,
+          category:query.category.trim(),
+          searchTerm:query.searchTerm.trim(),
+        }
         return {
           url: "products",
-          params:{
-            limit:query?.limit,
-            fields:query?.fields,
-            searchTerm:query?.searchTerm
-          }
+          params:queryParams
         };
       },
       providesTags: ['Product'],
