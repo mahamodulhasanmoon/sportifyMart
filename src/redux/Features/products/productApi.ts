@@ -21,8 +21,8 @@ export const {
         } = {
           limit:query?.limit,
           fields:query?.fields,
-          category:query.category.trim(),
-          searchTerm:query.searchTerm.trim(),
+          category:query?.category.trim(),
+          searchTerm:query?.searchTerm.trim(),
         }
         return {
           url: "products",
