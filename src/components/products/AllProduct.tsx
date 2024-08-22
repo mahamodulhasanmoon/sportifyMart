@@ -6,7 +6,6 @@ import ProductCard from "../cards/ProductCard";
 
 export const AllProduct = ({searchQuery,categoryFilter,sortQuery}:any) => {
  
-  console.log(categoryFilter);
  
   const {data} = useGetProductsQuery({
     searchTerm:`${searchQuery}`,

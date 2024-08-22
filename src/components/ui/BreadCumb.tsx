@@ -6,7 +6,7 @@ const Breadcrumb = () => {
   const pathnames = location.pathname.split('/').filter((x) => x);
 
   return (
-   <>
+   <div className='-z-10'>
    {
     pathnames.length > 0 && (
         <nav className="font-medium mb-2">
@@ -18,7 +18,7 @@ const Breadcrumb = () => {
                         height:'200px'
                       }}
         >
-            <div className="container mx-auto  z-10 text-2xl text-white bg-[#fff] p-10 text-center">
+            <div className="container mx-auto  text-2xl text-white bg-[#fff] p-10 text-center">
       <ol className="flex items-center justify-center absolute inset-0 bg-black opacity-40">
         {pathnames.length > 0 && (
           <li>
@@ -49,7 +49,7 @@ const Breadcrumb = () => {
     </nav>
     )
    }
-   </>
+   </div>
   );
 };
 

@@ -6,7 +6,9 @@ import { toast } from "react-toastify";
 
 export default function ProductTable() {
     const [deleteProduct,{isLoading,error,}] = useDeleteProductByIdMutation()
-    const { data } = useGetProductsQuery(undefined)
+    const { data } = useGetProductsQuery(undefined,{
+        pollingInterval:30000
+    })
     const [showModal, setShowModal] = useState(false);
     const [selectedProductData, setSelectedProductData] = useState<ProductProps | null>(null)
 

@@ -12,6 +12,7 @@ import Checkout from "../pages/Checkout";
 import Dashboard from "../pages/dashboard/Dashboard";
 import NotFound from "../components/shared/NotFound";
 import Admin from "../components/layout/Admin";
+import OrderSuccess from "../components/ui/OrderSuccess";
 
 export const routes : any = createBrowserRouter([{
     path: "/",
@@ -44,6 +45,10 @@ export const routes : any = createBrowserRouter([{
      {
       path:'/checkout',
       element:<Checkout/>
+     },
+     {
+      path:'/success',
+      element:<OrderSuccess/>
      },
 
  

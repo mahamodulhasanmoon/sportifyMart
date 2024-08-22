@@ -26,6 +26,7 @@ export const {
         removeFromCart,
         incrementQuantity,
         decrementQuantity,
+        clearCart
     }
 } = createSlice({
     initialState,
@@ -47,6 +48,10 @@ export const {
         removeFromCart: (state, action) => {
             state.cart = state.cart.filter(product => product._id!== action.payload)
         },
+        clearCart: (state) => {
+            state.cart = []
+        },
+
         // handle Increment or Decrement using same function
         incrementQuantity: (state, action: PayloadAction<string>) => {
             const product = state.cart.find((item) => item._id === action.payload);

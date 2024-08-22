@@ -1,6 +1,6 @@
 import Heading from "../ui/Heading";
 
-const companyImage = 'https://dummyimage.com/600x400/ccc/000.jpg&text=Company+Image';
+const companyImage = 'https://img.freepik.com/free-photo/man-entering-room-with-coworkers_23-2147656726.jpg';
 
 export default function Company() {
   return (

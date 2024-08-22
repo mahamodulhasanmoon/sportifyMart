@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import { useGetProductByIdQuery } from "../redux/Features/products/productApi";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch } from "../redux/hook";
 import { ICart } from "../interfaces/Products.interface";
 import { addToCart } from "../redux/Features/products/productSlice.ts";
+import { toast } from "react-toastify";
 
 interface ImgProps {
     index: number,
@@ -11,9 +13,13 @@ interface ImgProps {
 }
 
 
+
+
 const ProductDetails = () => {
+    const navigate = useNavigate()
     const { id } = useParams()
-    const { data } = useGetProductByIdQuery(id)
+
+    const { data }:any = useGetProductByIdQuery(id)
     const { name = '', _id = '', price = 0, thumbnail = '' } = data ?? {};
 
     const [img, setImg] = useState<ImgProps>({
@@ -32,11 +38,26 @@ const ProductDetails = () => {
     }
 
     const handleCart = () => {
-        dispatch(addToCart(cartData))
+        if(data?.stock > 0 && cartData?.quantity <= data?.stock){
+            dispatch(addToCart(cartData))
+            toast.success('added to cart')
+        }else{
+            toast.error('Stock Unavailable')
+        }
+        
+    }
+
+    const handleBuyNow = ()=>{
+        if(data?.stock > 0 && cartData?.quantity <= data?.stock){
+            dispatch(addToCart(cartData))
+         navigate('/checkout')
+        } else{
+            toast.error('Stock Unavailable')
+        }
     }
 
 
-    console.log(data);
+
     useEffect(() => {
         setImg({
             index: 0,
@@ -58,7 +79,7 @@ const ProductDetails = () => {
                         <div className="flex items-center justify-start gap-6">
 
                             {
-                                data?.imgUrls.map((url, i) => (
+                                data?.imgUrls.map((url:string, i:number) => (
                                     <img onClick={() => handleChangeImage({
                                         index: i,
                                         imgUrl: url
@@ -151,10 +172,14 @@ const ProductDetails = () => {
 
                         <div className="flex flex-col w-full space-y-4 mt-10">
 
-                            <button onClick={handleCart} className="py-2 px-6 bg--700 rounded-md bg-secondaryColor  hover:text-textColor-paragraph hover:bg-accentColor text-[#fff]">
+                            <button 
+                            disabled={data?.stock<1}
+                            onClick={handleCart}  className="py-2 px-6 bg--700 rounded-md bg-secondaryColor  hover:text-textColor-paragraph disabled:bg-slate-500 disabled:cursor-not-allowed hover:bg-accentColor text-[#fff]">
                                 Add To Cart
                             </button>
-                            <button className="border border-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 rounded  w-full hover:bg-gray-300 text-base font-medium leading-4 text-gray-800 py-4 bg-white">Buy Now</button>
+                            <button 
+                             disabled={data?.stock<1}
+                            onClick={handleBuyNow} className="border border-gray-800 focus:outline-none focus:ring-2 disabled:bg-slate-500 disabled:cursor-not-allowed  focus:ring-offset-2 focus:ring-gray-800 rounded  w-full hover:bg-gray-300 text-base font-medium leading-4 text-gray-800 py-4 bg-white">Buy Now</button>
                         </div>
                     </div>
 

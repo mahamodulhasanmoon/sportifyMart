@@ -52,7 +52,7 @@ export default function ProductModal({ showModal, setShowModal, selectedProductD
     }
 
 if(selectedProductData){
-  await updateProducts({
+ await updateProducts({
     id: selectedProductData?._id,
     formData,
   }).unwrap();
@@ -67,7 +67,8 @@ if(selectedProductData){
   return
 }
 
-    await addProducts(formData);
+    const data = await addProducts(formData);
+    console.log(data);
     if (isSuccess) {
       toast.success('Product Added Successfully');
       setShowModal(false);
@@ -177,7 +178,7 @@ if(selectedProductData){
                   <div className="mb-4">
                     <label htmlFor="thumbnail" className="block text-sm font-medium text-gray-700">Thumbnail</label>
                     <input type="file" id="thumbnail" {...register("thumbnail")} onChange={(e) => handleFileChange(e, true)} />
-                    {thumbnailPreview ||  selectedProductData?.thumbnail && <img src={thumbnailPreview || selectedProductData?.thumbnail} alt="Thumbnail Preview" className="mt-2 w-48" />}
+                    {thumbnailPreview  && <img src={thumbnailPreview} alt="Thumbnail Preview" className="mt-2 w-48" />}
                   </div>
                   <div className="mb-4">
                     <label htmlFor="images" className="block text-sm font-medium text-gray-700">Images</label>

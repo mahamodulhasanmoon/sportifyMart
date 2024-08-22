@@ -6,7 +6,9 @@ import HeroSection from "../components/ui/HeroSection";
 export default function Home() {
   return (
     <div>
+        <div className="">
         <HeroSection/>
+        </div>
         <Category/>
         <FeaturedSection/>
         <Contact/>

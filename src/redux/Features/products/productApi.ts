@@ -7,7 +7,8 @@ export const {
   useGetProductByIdQuery,
   useAddNewProductMutation,
   useDeleteProductByIdMutation,
-  useUpdateProductByIdMutation
+  useUpdateProductByIdMutation,
+  useBulkUpdateMutation
  } = injectEndpoints({
   endpoints: ({ query,mutation }) => ({
     getProducts: query<ProductProps[], any>({
@@ -61,6 +62,17 @@ export const {
       query: ({id,formData}) => ({
         url: `products/${id}`,
         method: "PATCH",
+        body:formData
+      }),
+      invalidatesTags: ['Product'],
+      transformResponse: (response: any) => response.data,
+      transformErrorResponse: (response: any) => response.data,
+      
+    }),
+    bulkUpdate: mutation<ProductProps, any >({
+      query: ({formData}) => ({
+        url: `products`,
+        method: "PUT",
         body:formData
       }),
       invalidatesTags: ['Product'],

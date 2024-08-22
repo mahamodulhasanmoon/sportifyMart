@@ -3,9 +3,9 @@ import Heading from "../ui/Heading";
 export default function Team() {
 
         const teamMembers = [
-          { id: 1, name: 'John Doe', position: 'CEO', image: 'https://via.placeholder.com/150' },
-          { id: 2, name: 'Jane Smith', position: 'CTO', image: 'https://via.placeholder.com/150' },
-          { id: 3, name: 'Sam Wilson', position: 'Marketing Head', image: 'https://via.placeholder.com/150' },
+          { id: 1, name: 'John Doe', position: 'CEO', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjwmsjsQZvjd_xfIplijafkQgQlB0kXQRBGA&s' },
+          { id: 2, name: 'Jane Smith', position: 'CTO', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjwmsjsQZvjd_xfIplijafkQgQlB0kXQRBGA&s' },
+          { id: 3, name: 'Sam Wilson', position: 'Marketing Head', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjwmsjsQZvjd_xfIplijafkQgQlB0kXQRBGA&s' },
           // Add more team members as needed
         ];
   return (

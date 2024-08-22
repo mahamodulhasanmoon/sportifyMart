@@ -35,7 +35,7 @@ const Category = () => {
         className="carousel-wrapper mb-10"
       >
         {Array.from({ length: totalSlides }).map((_, slideIndex) => (
-          <div key={slideIndex} className="grid grid-cols-6 gap-4">
+          <div key={slideIndex} className="grid grid-cols-3 md:grid-cols-6 gap-4">
             {categories.slice(slideIndex * itemsPerSlide, (slideIndex + 1) * itemsPerSlide).map((category) => (
               <div key={category.id} className="bg-white p-4 rounded-lg shadow-md text-center">
                 <Link to={`/products?category=${category.name}`}>

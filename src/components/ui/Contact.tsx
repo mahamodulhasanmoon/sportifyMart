@@ -4,7 +4,9 @@ import { ActionButton } from './Button';
  
  const Contact = () => {
    return (
-     <div className="bg-gray-100 p-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div className="bg-gray-100">
+       <div className="container mx-auto">
+      <div className=" p-8 grid grid-cols-1 md:grid-cols-2 gap-8">
        {/* Left Column (with image) */}
        <div className="mb-4 md:mb-0">
          <img src={contact} alt="Contact Us" className="shadow-drop" />
@@ -12,7 +14,7 @@ import { ActionButton } from './Button';
  
        {/* Right Column (Contact Form) */}
        <div className="bg-white p-6 my-10 shadow-drop">
-         <div className="text-center md:text-left">
+         <div className=" md:text-left">
            <h2 className="text-3xl font-bold text-primaryColor mb-4">Contact Us</h2>
            <form>
              <div className="mb-4">
@@ -56,6 +58,9 @@ import { ActionButton } from './Button';
          </div>
        </div>
      </div>
+     </div>
+    </div>
+    
    );
  };
  
