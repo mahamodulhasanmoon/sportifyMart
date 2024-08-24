@@ -1,30 +1,57 @@
-# React + TypeScript + Vite
+# SportifyMart
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+SportifyMart is an online sports service platform built with React.js. It allows users to browse and purchase sports products, manage their orders, and get in touch with the store via the contact page. The application uses Redux for state management and React Hook Form for handling form submissions.
 
-Currently, two official plugins are available:
+## Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Getting Started](#getting-started)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Home Page**: Overview of the platform and featured sports products.
+- **About Page**: Information about SportifyMart.
+- **Contact Page**: A form to allow users to contact the team.
+- **Shop Page**: Browse all available sports products.
+- **Product Details Page**: Each product has a dedicated page with detailed information.
+- **Order Management**: Users can create and manage their orders.
 
-- Configure the top-level `parserOptions` property like this:
+## Technologies Used
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+- **Frontend**: React.js
+- **State Management**: Redux
+- **Form Handling**: React Hook Form
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Getting Started
+
+To get a local copy up and running, follow these simple steps.
+
+### Prerequisites
+
+- Node.js installed on your machine
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/yourusername/sportifymart.git
+   cd sportifymart
+   pnpm install
+   pnpm start
+
+### Open http://localhost:5173 to view it in the browser.
+
+- Navigate through the different pages using the menu: Home, About, Contact, Shop.
+
+ - Browse products and click on any product to view its details.
+
+ - Use the forms to manage orders and contact the team.
+
